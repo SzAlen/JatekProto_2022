@@ -7,6 +7,7 @@ public class player : MonoBehaviour
     private BoxCollider2D boxCollider;
     private Vector3 moveDelta;
     private RaycastHit2D hit;
+    private float characterSpeed = 5.5f;
 
     private void Start()
     {
@@ -32,18 +33,18 @@ public class player : MonoBehaviour
         }
 
         //castolunk egy dobozt amerre mennenk,ha null akkor mehetunk
-        hit = Physics2D.BoxCast(transform.position, boxCollider.size, 0, new Vector2(0, moveDelta.y), Mathf.Abs(moveDelta.y * Time.deltaTime), LayerMask.GetMask("Actor","Blocking"));
+        hit = Physics2D.BoxCast(transform.position, boxCollider.size, 0, new Vector2(0, moveDelta.y), Mathf.Abs(moveDelta.y * Time.deltaTime * characterSpeed), LayerMask.GetMask("Actor","Blocking"));
 
         if (hit.collider == null)
         {
         //make movement
-            transform.Translate(0, moveDelta.y * Time.deltaTime, 0);
+            transform.Translate(0, moveDelta.y * Time.deltaTime * characterSpeed, 0);
         }
 
-        hit = Physics2D.BoxCast(transform.position, boxCollider.size, 0, new Vector2(moveDelta.x, 0), Mathf.Abs(moveDelta.x * Time.deltaTime), LayerMask.GetMask("Actor","Blocking"));
+        hit = Physics2D.BoxCast(transform.position, boxCollider.size, 0, new Vector2(moveDelta.x, 0), Mathf.Abs(moveDelta.x * Time.deltaTime * characterSpeed), LayerMask.GetMask("Actor","Blocking"));
         if (hit.collider == null)
         {
-            transform.Translate(moveDelta.x * Time.deltaTime, 0 , 0);
+            transform.Translate(moveDelta.x * Time.deltaTime * characterSpeed, 0 , 0);
         }
     }
 }
