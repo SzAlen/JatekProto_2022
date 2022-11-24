@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class survivor : Collectible
+public class Survivor : Collectible
 {
 
     public int pointsAmount = 10;
