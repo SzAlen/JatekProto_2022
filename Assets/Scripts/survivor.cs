@@ -14,7 +14,8 @@ public class Survivor : Collectible
        {
             collected = true;
             GetComponent<SpriteRenderer>().sprite = pickedUpSurvivor;
-            Debug.Log("Grant " + pointsAmount + " points!");
+            // +10 points!
+            GameManager.instance.ShowText("+" + pointsAmount + " points!",25,Color.yellow,transform.position,Vector3.up * 25, 1.5f);
 
        }
     }

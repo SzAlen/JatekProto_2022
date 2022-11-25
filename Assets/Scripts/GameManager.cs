@@ -29,8 +29,16 @@ public class GameManager : MonoBehaviour
     public List<Sprite> survivorSprites;
     public List<int> upgradePrices;
     public Player player;
+    public FloatingTextManager floatingTextManager;
     public int points;
     public int survivorsSaved;
+
+    //textek
+    public void ShowText(string msg, int fontSize, Color color, Vector3 position, Vector3 motion, float duration)
+    {
+        floatingTextManager.Show(msg, fontSize, color, position, motion, duration);
+    }
+
 
     //mentések
 
