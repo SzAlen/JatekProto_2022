@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     public FloatingTextManager floatingTextManager;
     public int points;
     public int survivorsSaved;
+    public int foodCollected;
 
     //textek
     public void ShowText(string msg, int fontSize, Color color, Vector3 position, Vector3 motion, float duration)
