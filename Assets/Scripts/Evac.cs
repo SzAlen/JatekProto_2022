@@ -7,7 +7,7 @@ public class Evac : Collidable
         if(coll.name == "Player")
         {
             GameManager.instance.SaveState();
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Base");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("FirstMap");
         }
     }
 }
