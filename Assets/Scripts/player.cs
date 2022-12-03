@@ -23,7 +23,7 @@ public class Player : Mover
     protected override void Death()
     {
         isAlive = false;
-        GameManager.instance.deathMenuAnim.SetTrigger("Show");
+        GameManager.instance.deathMenuAnim.SetTrigger("show");
     }
     private void FixedUpdate()
     {

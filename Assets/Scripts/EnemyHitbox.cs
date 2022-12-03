@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyHitbox : Collidable
 {
    //damage
-   public int damage = 1 ;
+   public int damage = 5 ;
    public float pushForce = 3;
 
    protected override void OnCollide(Collider2D coll)
@@ -14,7 +14,7 @@ public class EnemyHitbox : Collidable
         {
             Damage dmg = new Damage
             {
-                damageAmount = damage,
+                damageAmount = 5,
                 origin = transform.position,
                 pushForce = pushForce
             };
