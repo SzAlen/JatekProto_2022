@@ -28,14 +28,14 @@ public class Enemy : Mover
     private void FixedUpdate()
     {
         //a közelben van e a player
-        if(Vector3.Distance(playerTransform.position, startingPosition) < chaseLength)
+        if (Vector3.Distance(playerTransform.position, startingPosition) < chaseLength)
         {
-            if(Vector3.Distance(playerTransform.position, startingPosition) < triggerLength)
+            if (Vector3.Distance(playerTransform.position, startingPosition) < triggerLength)
                 chasing = true;
 
-            if(chasing)
+            if (chasing)
             {
-                if(!collidingWithPlayer)
+                if (!collidingWithPlayer)
                 {
                     UpdateMotor((playerTransform.position - transform.position).normalized);
                 }
@@ -61,7 +61,7 @@ public class Enemy : Mover
             {
                 continue;
             }
-            if(hits[i].tag == "Hero" && hits[i].name == "Player")
+            if (hits[i].tag == "Hero" && hits[i].name == "Player")
             {
                 collidingWithPlayer = true;
             }

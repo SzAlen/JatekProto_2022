@@ -11,28 +11,36 @@ public class GameManager : MonoBehaviour
         if(GameManager.instance != null)
         {
             Destroy(gameObject);
+            Destroy(player.gameObject);
+            Destroy(floatingTextManager.gameObject);
+            Destroy(ui);
+            Destroy(menu);
             return;
         }
 
         //statok torlese
-        //PlayerPrefs.DeleteAll();
+        PlayerPrefs.DeleteAll();
         
 
         instance = this;
         SceneManager.sceneLoaded += LoadState;
-        DontDestroyOnLoad(gameObject);
+        SceneManager.sceneLoaded += OnSceneLoaded;
 
     }
 
     
     public List<Sprite> playerSprites;
     public List<Sprite> survivorSprites;
-    public List<int> upgradePrices;
     public Player player;
     public FloatingTextManager floatingTextManager;
+
+    //public RectTransform hitpointBar;
     public int points;
     public int survivorsSaved;
     public int foodCollected;
+    public Animator deathMenuAnim;
+    public GameObject ui;
+    public GameObject menu;
 
     //textek
     public void ShowText(string msg, int fontSize, Color color, Vector3 position, Vector3 motion, float duration)
@@ -47,7 +55,25 @@ public class GameManager : MonoBehaviour
     //int points
     //int survivorsSaved
 
+    //On scene loaded
+    public void OnSceneLoaded(Scene s, LoadSceneMode mode)
+    {
+        player.transform.position = GameObject.Find("SpawnPoint").transform.position;
+    }
+    //Respawn
+    public void Respawn()
+    {
+        deathMenuAnim.SetTrigger("Hide");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Main");
+        player.Respawn();
+    }
 
+    public void OnHitpointChange()
+    {
+        float ratio = (float)player.hitpoint / (float)player.maxHitpoint;
+        //hitpointBar.localScale = new Vector3(1, ratio, 1);
+
+    }
     public void SaveState()
     {
         
@@ -55,13 +81,18 @@ public class GameManager : MonoBehaviour
 
         s += "0" + "|";
         s += points.ToString() + "|";
-        s += survivorsSaved.ToString();
+        s += survivorsSaved.ToString() + "|";
+        s += foodCollected.ToString();
 
         PlayerPrefs.SetString("SaveState", s);
     }
 
     public void LoadState(Scene s, LoadSceneMode mode)
     {
+
+        SceneManager.sceneLoaded -= LoadState;
+
+        Debug.Log("LoadState");
         if(!PlayerPrefs.HasKey("SaveState"))
             return;
 
@@ -70,9 +101,9 @@ public class GameManager : MonoBehaviour
         // skin csere majd
 
         points = int.Parse(data[1]);
+
         survivorsSaved = int.Parse(data[2]);
 
-        Debug.Log("LoadState");
+        foodCollected = int.Parse(data[3]);
     }
-
 }
