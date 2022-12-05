@@ -5,12 +5,13 @@ using UnityEngine;
 public class Enemy : Mover
 {
     
-    public float triggerLength = 5;
-    public float chaseLength = 3;
+    protected float triggerLength = 6;
+    protected float chaseLength = 13;
     private bool chasing;
     private bool collidingWithPlayer;
     private Transform playerTransform;
     private Vector3 startingPosition;
+    protected float enemySpeedModifier = 0.9f;
 
     
     public ContactFilter2D filter;
@@ -37,18 +38,18 @@ public class Enemy : Mover
             {
                 if (!collidingWithPlayer)
                 {
-                    UpdateMotor((playerTransform.position - transform.position).normalized);
+                    UpdateMotor((playerTransform.position - transform.position).normalized * enemySpeedModifier);
                 }
             }
             else
             {
-                UpdateMotor(startingPosition - transform.position);
+                UpdateMotor((startingPosition - transform.position) * enemySpeedModifier);
             }
                 
         }
         else
         {
-            UpdateMotor(startingPosition - transform.position);
+            UpdateMotor((startingPosition - transform.position) * enemySpeedModifier);
             chasing = false;
         }
 

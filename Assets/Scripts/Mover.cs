@@ -8,8 +8,8 @@ public abstract class Mover : Hero
     protected Vector3 moveDelta;
     protected RaycastHit2D hit;
     protected float ySpeed = 0.75f;
-    protected float xSpeed = 1.0f;
-    protected float characterSpeed = 5.5f;
+    protected float xSpeed = 0.75f;
+    protected float characterSpeed = 4.7f;
 
     protected virtual void Start()
     {

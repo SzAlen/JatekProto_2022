@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : Mover 
 {
@@ -23,7 +24,9 @@ public class Player : Mover
     protected override void Death()
     {
         isAlive = false;
-        GameManager.instance.deathMenuAnim.SetTrigger("show");
+        //GameManager.instance.deathMenuAnim.SetTrigger("show");
+        SceneManager.LoadScene("Results");
+
     }
     private void FixedUpdate()
     {
