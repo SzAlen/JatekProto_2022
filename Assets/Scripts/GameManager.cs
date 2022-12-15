@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour
     {
         player.transform.position = GameObject.Find("SpawnPoint").transform.position;
     }
+    
     //Respawn
     public void Respawn()
     {
